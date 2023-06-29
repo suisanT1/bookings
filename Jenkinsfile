@@ -2,6 +2,9 @@ pipeline{
     agent{
         label "any"
     }
+    tools {
+        gradle 'Gradle'
+    }
     stages{
         stage("Run frontend"){
             steps{
@@ -25,9 +28,8 @@ pipeline{
         stage("Run backend"){
             steps{
                 echo "========executing gradle========"
-                withGradle() {
-                    sh './gradlew -v'
-                }
+                sh './gradlew -v'
+
             }
             post{
                 always{
